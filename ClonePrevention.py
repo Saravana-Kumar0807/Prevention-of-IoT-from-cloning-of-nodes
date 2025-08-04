@@ -131,7 +131,7 @@ class GTI_Node:
                         self.clone_check_log = {}
                     if key in self.clone_check_log:
                         if abs(self.clone_check_log[key] - x_val) > 0.01:  # Different x in same epoch = clone
-                            print(f"[{self.node_name}] 🚨 CLONE DETECTED!! {neighbor_name} clone detected in region {REGION_MAP.get(neighbor_name, 'UNKNOWN')} (conflicting x in epoch {epoch})!")
+                            print(f"[{self.node_name}]  CLONE DETECTED!! {neighbor_name} clone detected in region {REGION_MAP.get(neighbor_name, 'UNKNOWN')} (conflicting x in epoch {epoch})!")
                             self.trigger_alert()
                     else:
                         self.clone_check_log[key] = x_val
@@ -187,7 +187,7 @@ class GTI_Node:
         deviation = abs(self.state['x'] - region_mean)
 
         if deviation > 0.5:
-            print(f"[{self.node_name}] ⚠️ Code anomaly detected in region {self.region}! x={self.state['x']:.4f} vs mean={region_mean:.4f}")
+            print(f"[{self.node_name}]  Code anomaly detected in region {self.region}! x={self.state['x']:.4f} vs mean={region_mean:.4f}")
 
             max_dev = 0
             suspected_node = None
@@ -198,7 +198,7 @@ class GTI_Node:
                     suspected_node = name
 
             if suspected_node and not self.suspicion_triggered:
-                print(f"[{self.node_name}] 🚨 CLONE DETECTED!! {suspected_node} clone detected in region {self.region}!")
+                print(f"[{self.node_name}]  CLONE DETECTED!! {suspected_node} clone detected in region {self.region}!")
                 self.trigger_alert()
 
 
@@ -248,3 +248,4 @@ class GTI_Node:
 if __name__ == "__main__":
     node = GTI_Node(NODE_NAME)
     node.run()
+
